@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover" />
+  <title>OmoCreations - Luxury Stone Fashion | Premium Rhinestones & Beads Abeokuta</title>
+  
+  <!-- Preload Critical Images from Cloudinary for Speed -->
+  <link rel="preload" as="image" href="https://res.cloudinary.com/dw80fw9un/image/upload/q_auto,f_auto,w_1920,c_limit/v1777337288/p1_h8uvcu.jpg">
+  <link rel="preload" as="image" href="https://res.cloudinary.com/dw80fw9un/image/upload/q_auto,f_auto,w_1920,c_limit/v1777337287/p2_h9jwd2.jpg">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+      overflow-x: hidden;
+    }
+    
+    :root {
+      --pink: #ff4da6;
+      --pink-dark: #e6398c;
+      --pink-light: #ffb3d9;
+      --pink-soft: #fff0f6;
+      --pink-glow: rgba(255, 77, 166, 0.4);
+      --dark: #1a1a2e;
+      --gray: #666;
+      --gold: #d4af37;
+    }
+    
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--pink-soft); }
+    ::-webkit-scrollbar-thumb { background: var(--pink); border-radius: 10px; }
+    
+    /* ========== FLAME RING ANIMATION ========== */
+    @keyframes flameRing {
+      0% { box-shadow: 0 0 0 0 rgba(255, 77, 166, 0.4), 0 0 0 0 rgba(255, 133, 193, 0.3); }
+      30% { box-shadow: 0 0 0 15px rgba(255, 77, 166, 0.2), 0 0 0 25px rgba(255, 133, 193, 0.1); }
+      60% { box-shadow: 0 0 0 25px rgba(255, 77, 166, 0.1), 0 0 0 35px rgba(255, 133, 193, 0.05); }
+      100% { box-shadow: 0 0 0 35px rgba(255, 77, 166, 0), 0 0 0 50px rgba(255, 133, 193, 0); }
+    }
+    
+    @keyframes fireGlow {
+      0%, 100% { filter: drop-shadow(0 0 5px rgba(255, 77, 166, 0.5)); }
+      50% { filter: drop-shadow(0 0 20px rgba(255, 77, 166, 0.8)); }
+    }
+    
+    .flame-ring {
+      position: relative;
+      border-radius: 20px;
+      animation: fireGlow 2s ease-in-out infinite;
+    }
+    
+    .flame-ring::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      border-radius: 25px;
+      background: linear-gradient(135deg, var(--pink), var(--pink-light), var(--gold));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+    
+    .flame-ring:hover::before {
+      opacity: 0.6;
+      animation: flameRing 1.5s ease-out infinite;
+    }
+    
+    /* ========== STYLISH NAVIGATION ========== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      padding: 15px 5%;
+      transition: 0.3s;
+      border-bottom: 1px solid rgba(255, 77, 166, 0.1);
+    }
+    
+    .navbar.scrolled {
+      padding: 10px 5%;
+      background: rgba(255, 255, 255, 0.98);
+      border-bottom-color: var(--pink);
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    
+    .logo img {
+      height: 55px;
+      width: auto;
+      object-fit: contain;
+    }
+    
+    .logo-text {
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+    
+    .logo-text span:first-child { color: var(--dark); }
+    .logo-text span:last-child { color: var(--pink); }
+    
+    .nav-menu {
+      display: flex;
+      gap: 35px;
+      list-style: none;
+    }
+    
+    .nav-link {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      transition: 0.2s;
+      font-size: 1rem;
+      position: relative;
+    }
+    
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--pink), var(--pink-light));
+      transition: 0.3s;
+      border-radius: 3px;
+    }
+    
+    .nav-link:hover::before,
+    .nav-link.active::before { width: 100%; }
+    
+    .nav-link:hover { color: var(--pink); }
+    
+    /* Mobile Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      z-index: 1002;
+    }
+    
+    .hamburger span {
+      width: 28px;
+      height: 3px;
+      background: var(--dark);
+      transition: 0.2s;
+      border-radius: 3px;
+    }
+    
+    @media (max-width: 992px) {
+      .hamburger { display: flex; }
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 320px;
+        height: 100vh;
+        background: linear-gradient(135deg, #1a1a2e, #2d2d4a);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 35px;
+        transition: 0.3s ease-in-out;
+        z-index: 1001;
+        box-shadow: -5px 0 30px rgba(0,0,0,0.3);
+      }
+      .nav-menu.active { right: 0; }
+      .nav-menu .nav-link { color: white; font-size: 1.2rem; }
+      .close-btn {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        font-size: 30px;
+        color: white;
+        cursor: pointer;
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.1);
+        transition: 0.2s;
+      }
+      .close-btn:hover { background: var(--pink); transform: rotate(90deg); }
+      .hamburger.active { opacity: 0; visibility: hidden; }
+    }
+    
+    /* ========== HERO SECTION ========== */
+    .hero {
+      height: 90vh;
+      min-height: 600px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 0;
+    }
+    
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+      z-index: 1;
+    }
+    
+    .slide.active { opacity: 1; z-index: 2; }
+    
+    .slide-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    
+    .slide.active .slide-bg {
+      animation: kenBurns 8s ease-out forwards;
+    }
+    
+    @keyframes kenBurns {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
+    }
+    
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0.3));
+    }
+    
+    .slide-content {
+      position: absolute;
+      bottom: 25%;
+      left: 10%;
+      right: 10%;
+      z-index: 3;
+      color: white;
+      max-width: 650px;
+    }
+    
+    .slide-content h1 {
+      font-size: 4.5rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+      line-height: 1.1;
+    }
+    
+    .slide-content p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      line-height: 1.5;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+      font-weight: 500;
+    }
+    
+    .slide-content .btn {
+      font-size: 1.1rem;
+      padding: 14px 32px;
+    }
+    
+    @media (max-width: 768px) {
+      .slide-content h1 { font-size: 2.5rem; }
+      .slide-content p { font-size: 1rem; }
+      .slide-content { bottom: 20%; left: 5%; right: 5%; }
+    }
+    
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 45px;
+      height: 45px;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(5px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: 0.2s;
+      color: white;
+      font-size: 1.2rem;
+    }
+    
+    .slider-btn:hover { background: var(--pink); transform: translateY(-50%) scale(1.05); }
+    .slider-prev { left: 20px; }
+    .slider-next { right: 20px; }
+    
+    .slider-dots {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 10;
+    }
+    
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    
+    .dot.active { background: var(--pink); transform: scale(1.3); }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0) translateX(-50%); }
+      50% { transform: translateY(-10px) translateX(-50%); }
+    }
+    
+    /* ========== ENGAGING CONTENT AFTER HERO ========== */
+    .brand-story {
+      background: linear-gradient(135deg, var(--pink-soft), white);
+      padding: 60px 5%;
+      text-align: center;
+    }
+    
+    .brand-story h2 {
+      font-size: 2.5rem;
+      font-family: 'Playfair Display', serif;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+    
+    .brand-story h2 span { color: var(--pink); }
+    
+    .brand-story p {
+      max-width: 800px;
+      margin: 0 auto 30px;
+      color: var(--gray);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    
+    .stat-item {
+      text-align: center;
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--pink);
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    /* Divider Image with Flame Ring */
+    .divider-section {
+      padding: 50px 5%;
+      text-align: center;
+      background: white;
+    }
+    
+    .divider-image {
+      max-width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    
+    .btn-primary {
+      background: var(--pink);
+      color: white;
+      box-shadow: 0 5px 20px rgba(255,77,166,0.3);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      background: var(--pink-dark);
+      box-shadow: 0 8px 25px rgba(255,77,166,0.4);
+    }
+    
+    .btn-outline {
+      border: 2px solid white;
+      color: white;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(5px);
+    }
+    
+    .btn-outline:hover {
+      background: white;
+      color: var(--pink);
+      transform: translateY(-3px);
+    }
+    
+    /* Sections */
+    .section {
+      padding: 60px 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    
+    .section-title span { color: var(--pink); }
+    
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--pink), var(--pink-light));
+      margin: 15px auto 0;
+      border-radius: 3px;
+    }
+    
+    .section-subtitle {
+      text-align: center;
+      color: var(--gray);
+      max-width: 700px;
+      margin: 15px auto 45px;
+      font-size: 1rem;
+    }
+    
+    /* About */
+    .about-grid {
+      display: flex;
+      gap: 50px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .about-text { flex: 1; }
+    .about-text p {
+      color: var(--gray);
+      margin-bottom: 18px;
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+    
+    .about-image {
+      flex: 1;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: 0.3s;
+    }
+    
+    .about-image:hover img { transform: scale(1.02); }
+    
+    /* Services */
+    .services { background: var(--pink-soft); }
+    .services-grid {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+    
+    .service-card {
+      background: white;
+      padding: 35px 25px;
+      text-align: center;
+      border-radius: 20px;
+      flex: 1;
+      min-width: 220px;
+      transition: 0.3s;
+      border: 1px solid rgba(255,77,166,0.1);
+    }
+    
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(255,77,166,0.15);
+      border-color: var(--pink);
+    }
+    
+    .service-icon { font-size: 3rem; margin-bottom: 15px; }
+    .service-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--pink); font-weight: 700; }
+    .service-card p { font-size: 0.85rem; color: var(--gray); }
+    
+    /* Gallery with Flame Ring */
+    .gallery-grid {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+    
+    .gallery-item {
+      flex: 1;
+      min-width: 280px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      transition: 0.3s;
+      background: white;
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 45px rgba(255,77,166,0.2);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      transition: 0.3s;
+    }
+    
+    .gallery-item:hover img { transform: scale(1.03); }
+    
+    .gallery-info {
+      padding: 18px;
+      text-align: center;
+    }
+    
+    .gallery-info h3 { font-size: 1rem; color: var(--pink); margin-bottom: 5px; font-weight: 700; }
+    .gallery-info p { font-size: 0.8rem; color: var(--gray); }
+    
+    /* Contact */
+    .contact-section {
+      background: linear-gradient(135deg, var(--pink-soft), white);
+      border-radius: 30px;
+      margin: 0 5% 50px;
+      padding: 50px;
+    }
+    
+    .contact-grid {
+      display: flex;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+    
+    .contact-info { flex: 1; }
+    .map-container { flex: 1; }
+    
+    .info-card {
+      display: flex;
+      gap: 18px;
+      padding: 18px;
+      background: white;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      transition: 0.2s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .info-card:hover {
+      background: var(--pink-soft);
+      transform: translateX(8px);
+    }
+    
+    .info-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--pink);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    
+    .info-content h4 { font-size: 1rem; margin-bottom: 5px; font-weight: 700; }
+    .info-content p, .info-content a {
+      font-size: 0.85rem;
+      color: var(--gray);
+      text-decoration: none;
+    }
+    .info-content a:hover { color: var(--pink); }
+    
+    .map-container iframe {
+      width: 100%;
+      height: 360px;
+      border-radius: 15px;
+      border: 0;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    /* Social */
+    .social-section {
+      margin-top: 50px;
+      text-align: center;
+    }
+    
+    .social-title {
+      font-size: 1.8rem;
+      margin-bottom: 35px;
+      color: var(--dark);
+      font-weight: 700;
+    }
+    
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+    
+    .social-card {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 14px 22px;
+      border-radius: 60px;
+      text-decoration: none;
+      transition: 0.2s;
+      color: white;
+    }
+    
+    .social-card:hover { transform: translateY(-3px); }
+    .social-card.instagram { background: linear-gradient(135deg, #833AB4, #E1306C, #F77737); }
+    .social-card.facebook { background: linear-gradient(135deg, #1877F2, #0C63D4); }
+    .social-card.tiktok { background: linear-gradient(135deg, #000, #25F4EE, #FE2C55); }
+    .social-card.whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); }
+    .social-card.email { background: linear-gradient(135deg, #EA4335, #C5221F); }
+    
+    .social-icon {
+      width: 42px;
+      height: 42px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+    
+    .social-info { flex: 1; text-align: left; }
+    .social-info h4 { font-size: 0.95rem; margin-bottom: 3px; font-weight: 600; }
+    .social-info p { font-size: 0.7rem; opacity: 0.85; }
+    
+    /* Newsletter */
+    .newsletter {
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+      padding: 50px 40px;
+      border-radius: 25px;
+      text-align: center;
+      color: white;
+      margin: 0 5% 50px;
+    }
+    
+    .newsletter h3 { font-size: 1.8rem; margin-bottom: 12px; font-weight: 700; }
+    .newsletter p { font-size: 0.95rem; margin-bottom: 30px; opacity: 0.9; }
+    
+    .newsletter-form {
+      display: flex;
+      gap: 15px;
+      max-width: 500px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    
+    .newsletter-form input {
+      flex: 1;
+      padding: 14px 22px;
+      border: none;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      outline: none;
+    }
+    
+    .newsletter-form button {
+      padding: 14px 30px;
+      background: var(--dark);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    
+    .newsletter-form button:hover {
+      background: #2b2b3b;
+      transform: translateY(-2px);
+    }
+    
+    /* ========== PROFESSIONAL FOOTER ========== */
+    .footer {
+      background: var(--dark);
+      color: white;
+      padding: 60px 5% 25px;
+    }
+    
+    .footer-grid {
+      display: flex;
+      gap: 50px;
+      flex-wrap: wrap;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .footer-col {
+      flex: 1;
+      min-width: 200px;
+    }
+    
+    .footer-logo {
+      font-size: 1.6rem;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+    
+    .footer-logo span { color: var(--pink); }
+    
+    .footer-col p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    
+    .footer-col h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 35px;
+      height: 2px;
+      background: var(--pink);
+      border-radius: 2px;
+    }
+    
+    .footer-col ul {
+      list-style: none;
+    }
+    
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-col ul li a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: 0.2s;
+    }
+    
+    .footer-col ul li a:hover {
+      color: var(--pink);
+      padding-left: 5px;
+    }
+    
+    .footer-social {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .footer-social a {
+      width: 38px;
+      height: 38px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+    
+    .footer-social a:hover {
+      background: var(--pink);
+      transform: translateY(-3px);
+    }
+    
+    .payment-methods {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .payment-methods span {
+      font-size: 1.5rem;
+      color: rgba(255,255,255,0.6);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 35px;
+      margin-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+    }
+    
+    /* Floating Buttons */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 55px;
+      height: 55px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.8rem;
+      text-decoration: none;
+      box-shadow: 0 5px 20px rgba(37,211,102,0.4);
+      transition: 0.2s;
+      z-index: 999;
+    }
+    
+    .whatsapp-float:hover { transform: scale(1.08); }
+    
+    .back-to-top {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      width: 45px;
+      height: 45px;
+      background: var(--pink);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.2s;
+      z-index: 999;
+    }
+    
+    .back-to-top.show { opacity: 1; visibility: visible; }
+    .back-to-top:hover { background: var(--pink-dark); transform: translateY(-3px); }
+    
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      right: 25px;
+      background: var(--dark);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      z-index: 1000;
+      transform: translateX(400px);
+      transition: transform 0.3s ease;
+      font-size: 0.9rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+    
+    .toast.show {
+      transform: translateX(0);
+    }
+    
+    @media (max-width: 992px) {
+      .hero { height: 80vh; min-height: 500px; }
+      .slide-content h1 { font-size: 2.8rem; }
+      .slide-content p { font-size: 1rem; }
+      .section-title { font-size: 2rem; }
+      .brand-story h2 { font-size: 2rem; }
+      .social-grid { grid-template-columns: 1fr; gap: 15px; }
+      .footer-grid { flex-direction: column; text-align: center; }
+      .footer-col h4::after { left: 50%; transform: translateX(-50%); }
+      .footer-social { justify-content: center; }
+      .payment-methods { justify-content: center; }
+    }
+    
+    @media (max-width: 768px) {
+      .logo-text { font-size: 1.2rem; }
+      .logo img { height: 40px; }
+      .slide-content h1 { font-size: 2rem; }
+      .hero { height: 70vh; }
+      .stat-number { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="#" class="logo">
+      <img src="https://res.cloudinary.com/dw80fw9un/image/upload/q_auto,f_auto,w_200,c_limit/v1777337288/p1_h8uvcu.jpg" alt="OmoCreations Logo" id="logoImg">
+      <div class="logo-text"><span>Omo</span><span>Creations</span></div>
+    </a>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-menu" id="navMenu">
+      <span class="close-btn" id="closeMenu">✕</span>
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#services" class="nav-link">Services</a></li>
+      <li><a href="#gallery" class="nav-link">Catalog</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+      <li><a href="auth.html" class="nav-link">Sign In</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+  <div class="slide active">
+    <div class="slide-bg" style="background-image: url('https://res.cloudinary.com/dw80fw9un/image/upload/q_auto,f_auto,w_1920,c_limit/v1777337288/p1_h8uvcu.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <h1>Luxury Stone Fashion</h1>
+      <p>Where elegance meets craftsmanship in every detail.</p>
+      <a href="shop.html" class="btn btn-primary"><i class="fas fa-shopping-bag"></i> Shop Now</a>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="slide-bg" style="background-image: url('https://res.cloudinary.com/dw80fw9un/image/upload/q_auto,f_auto,w_1920,c_limit/v1777337287/p2_h9jwd2.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <h1>Original Rhinestones</h1>
+      <p>Premium quality rhinestones for all your fashion needs in Abeokuta.</p>
+      <a href="https://wa.me/2348077340294?text=Hello%20@%20OmoCreations%20I%20want%20to%20make%20an%20enquiry%20on%20your%20products" class="btn btn-outline"><i class="fab fa-whatsapp"></i> Inquire Now</a>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="slide-bg" style="background-image: url('https://res.cloudinary.com/dw80fw9un/image/upload/q_auto,f_auto,w_1920,c_limit/v1777337289/p3_zbaxok.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <h1>Beads & Bridal Materials</h1>
+      <p>Complete collection of beads, bridal stones, and fashion accessories.</p>
+      <a href="#contact" class="btn btn-primary"><i class="fas fa-phone"></i> Contact Us</a>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="slide-bg" style="background-image: url('https://res.cloudinary.com/dw80fw9un/image/upload/q_auto,f_auto,w_1920,c_limit/v1777337287/p4_ypnkmx.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <h1>Paperstones</h1>
+      <p>High-quality paperstones for unique fashion designs.</p>
+      <a href="https://wa.me/2348077340294?text=Hello%20@%20OmoCreations%20I%20want%20to%20make%20an%20enquiry%20on%20your%20products" class="btn btn-outline"><i class="fab fa-whatsapp"></i> Inquire Now</a>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="slide-bg" style="background-image: url('https://res.cloudinary.com/dw80fw9un/image/upload/q_auto,f_auto,w_1920,c_limit/v1777337289/p5_kyhtju.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <h1>Training Available</h1>
+      <p>Learn how to make professional paperstones in Abeokuta.</p>
+      <a href="#contact" class="btn btn-primary"><i class="fas fa-graduation-cap"></i> Enroll Now</a>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="slide-bg" style="background-image: url('https://res.cloudinary.com/dw80fw9un/image/upload/q_auto,f_auto,w_1920,c_limit/v1777337289/p6_pl2hfo.jpg');"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <h1>OmoCreations</h1>
+      <p>Your trusted source for rhinestones, beads, and bridal materials in Ogun State.</p>
+      <a href="#contact" class="btn btn-outline"><i class="fas fa-map-marker-alt"></i> Visit Us</a>
+    </div>
+  </div>
+  
+  <div class="slider-btn slider-prev" id="prevSlide"><i class="fas fa-chevron-left"></i></div>
+  <div class="slider-btn slider-next" id="nextSlide"><i class="fas fa-chevron-right"></i></div>
+  <div class="slider-dots" id="sliderDots"></div>
+  <a href="#brand-story" class="scroll-indicator"><span>Scroll</span><i class="fas fa-chevron-down"></i></a>
+</section>
+
+<!-- Engaging Brand Story Section -->
+<section class="brand-story" id="brand-story">
+  <div class="container">
+    <h2>Your Trusted Source for <span>Premium Rhinestones</span> in Abeokuta</h2>
+    <p>For over 5 years, OmoCreations has been the go-to destination for fashion designers, bridal stylists, and creative entrepreneurs seeking the finest stones, beads, and bridal materials. We combine quality craftsmanship with exceptional customer service to bring your creative visions to life.</p>
+    <div class="stats">
+      <div class="stat-item"><div class="stat-number">500+</div><div class="stat-label">Happy Clients</div></div>
+      <div class="stat-item"><div class="stat-number">1000+</div><div class="stat-label">Designs Created</div></div>
+      <div class="stat-item"><div class="stat-number">50+</div><div class="stat-label">Bridal Collections</div></div>
+      <div class="stat-item"><div class="stat-number">24/7</div><div class="stat-label">Customer Support</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Divider Image with Flame Ring -->
+<div class="divider-section">
+  <div class="flame-ring">
+    <img src="https://res.cloudinary.com/dw80fw9un/image/upload/q_auto,f_auto,w_1200,c_limit/v1777337288/pp2_iok21q.jpg" alt="Featured Design" class="divider-image" loading="lazy">
+  </div>
+</div>
+
+<!-- About Section -->
+<section class="section" id="about">
+  <h2 class="section-title">About <span>Us</span></h2>
+  <p class="section-subtitle">Discover the story behind OmoCreations and our passion for stone fashion</p>
+  <div class="about-grid">
+    <div class="about-text">
+      <p><strong>OmoCreations</strong> is a premium fashion stone design company located at <strong>3 Oyebo Street, Abiola Way, behind Laroy Suite, Abeokuta 111101, Ogun State, Nigeria</strong>.</p>
+      <p>We specialize in <strong>Sales of Beads, Rhinestones, Bridal Materials, and Paperstones</strong>. OmoCreations sells Original Rhinestones in Abeokuta, Ogun State, Nigeria.</p>
+      <p>We also offer professional training on how to make paperstones in Abeokuta, Ogun State, Nigeria. Our mission is to bring elegance, beauty, and uniqueness to every fabric we touch.</p>
+      <p>With years of experience and a passion for perfection, we create masterpieces that stand out for weddings, parties, and special events.</p>
+    </div>
+    <div class="about-image flame-ring">
+      <img src="https://res.cloudinary.com/dw80fw9un/image/upload/q_auto,f_auto,w_800,c_limit/v1777337289/pp1_hfebst.jpg" alt="Fashion stone design" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="services" id="services">
+  <div class="section">
+    <h2 class="section-title">Our <span>Services</span></h2>
+    <p class="section-subtitle">What we offer to make you look stunning</p>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-icon">💎</div><h3>Original Rhinestones</h3><p>Premium quality rhinestones for all your fashion needs in Abeokuta.</p></div>
+      <div class="service-card"><div class="service-icon">💍</div><h3>Beads & Bridal Materials</h3><p>Elegant beads, pearls, and premium bridal accessories for your special day.</p></div>
+      <div class="service-card"><div class="service-icon">📄</div><h3>Paperstones Sales</h3><p>High-quality paperstones for unique and creative fashion designs.</p></div>
+      <div class="service-card"><div class="service-icon">🎓</div><h3>Paperstone Training</h3><p>Professional training on how to make paperstones. Contact us to enroll!</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Section with Flame Ring -->
+<section class="section" id="gallery">
+  <h2 class="section-title">Our <span>Catalog</span></h2>
+  <p class="section-subtitle">Browse our stunning stone fashion creations</p>
+  <div class="gallery-grid">
+    <div class="gallery-item flame-ring"><img src="https://res.cloudinary.com/dw80fw9un/image/upload/q_auto,f_auto,w_600,c_limit/v1777337289/pp1_hfebst.jpg" alt="Luxury Stone" loading="lazy"><div class="gallery-info"><h3>Luxury Stone Dress</h3><p>Elegant evening gown with hand-placed crystals</p></div></div>
+    <div class="gallery-item flame-ring"><img src="https://res.cloudinary.com/dw80fw9un/image/upload/q_auto,f_auto,w_600,c_limit/v1777337288/pp2_iok21q.jpg" alt="Rhinestone" loading="lazy"><div class="gallery-info"><h3>Rhinestone Craft</h3><p>Precision-cut rhinestone patterns</p></div></div>
+    <div class="gallery-item flame-ring"><img src="https://res.cloudinary.com/dw80fw9un/image/upload/q_auto,f_auto,w_600,c_limit/v1777337288/pp3_pigaxv.jpg" alt="Bridal" loading="lazy"><div class="gallery-info"><h3>Bridal Collection</h3><p>Wedding stone embellishments</p></div></div>
+    <div class="gallery-item flame-ring"><img src="https://res.cloudinary.com/dw80fw9un/image/upload/q_auto,f_auto,w_600,c_limit/v1777337288/pp4_ql7xpa.jpg" alt="Paperstone" loading="lazy"><div class="gallery-info"><h3>Paperstone Art</h3><p>Creative paperstone designs</p></div></div>
+    <div class="gallery-item flame-ring"><img src="https://res.cloudinary.com/dw80fw9un/image/upload/q_auto,f_auto,w_600,c_limit/v1777337287/pp5_hxu5ab.jpg" alt="Beads" loading="lazy"><div class="gallery-info"><h3>Beads Collection</h3><p>Premium beads for fashion</p></div></div>
+    <div class="gallery-item flame-ring"><img src="https://res.cloudinary.com/dw80fw9un/image/upload/q_auto,f_auto,w_600,c_limit/v1777337289/pp6_iibil6.jpg" alt="Bridal Materials" loading="lazy"><div class="gallery-info"><h3>Bridal Materials</h3><p>Complete bridal stone collection</p></div></div>
+  </div>
+  <div style="text-align:center; margin-top:45px;"><a href="shop.html" class="btn btn-primary">View Full Catalog <i class="fas fa-arrow-right"></i></a></div>
+</section>
+
+<!-- Contact Section -->
+<div class="contact-section" id="contact">
+  <h2 class="section-title">Contact <span>Us</span></h2>
+  <p class="section-subtitle">Get in touch for inquiries, orders, or training registration</p>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="info-card"><div class="info-icon"><i class="fas fa-location-dot"></i></div><div class="info-content"><h4>Visit Our Store</h4><p>3 Oyebo Street, Abiola Way, behind Laroy Suite<br>Abeokuta 111101, Ogun State, Nigeria</p><a href="https://maps.app.goo.gl/73uZDK4zoHJa17NR7" target="_blank" style="color:var(--pink);">Get Directions <i class="fas fa-arrow-right"></i></a></div></div>
+      <div class="info-card"><div class="info-icon"><i class="fas fa-phone"></i></div><div class="info-content"><h4>Call / WhatsApp</h4><p><a href="tel:+2348077340294">+234 807 734 0294</a></p><a href="https://wa.me/2348077340294?text=Hello%20@%20OmoCreations%20I%20want%20to%20make%20an%20enquiry%20on%20your%20products" target="_blank" style="color:#25D366;"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a></div></div>
+      <div class="info-card"><div class="info-icon"><i class="fas fa-envelope"></i></div><div class="info-content"><h4>Email Us</h4><p><a href="mailto:omocreationwebsite@gmail.com">omocreationwebsite@gmail.com</a></p></div></div>
+      <div class="info-card"><div class="info-icon"><i class="fas fa-clock"></i></div><div class="info-content"><h4>Working Hours</h4><p>Monday - Saturday: 9:00 AM - 6:00 PM<br>Sunday: Closed</p></div></div>
+    </div>
+    <div class="map-container flame-ring">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.2!2d3.456789!3d7.123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8d8e8e8e8e8e%3A0x8e8e8e8e8e8e8e8e!2s3%20Oyebo%20Street%2C%20Abiola%20Way%2C%20behind%20laroy%20suite%2C%20Abeokuta%20111101%2C%20Ogun%20State%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1700000000000!5m2!1sen!2sng" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+  
+  <!-- Social Section -->
+  <div class="social-section">
+    <h3 class="social-title">Follow Our Journey</h3>
+    <div class="social-grid">
+      <a href="https://www.instagram.com/o.m.ocreations?igsh=MWNvaDVtMGRtYTR3Zg==" target="_blank" class="social-card instagram"><div class="social-icon"><i class="fab fa-instagram"></i></div><div class="social-info"><h4>Main Instagram</h4><p>@o.m.ocreations</p></div><i class="fas fa-external-link-alt"></i></a>
+      <a href="https://www.instagram.com/o.m.ocreationsupshot?igsh=cDZqaXVsb3VienVy" target="_blank" class="social-card instagram"><div class="social-icon"><i class="fab fa-instagram"></i></div><div class="social-info"><h4>Upshot Instagram</h4><p>@o.m.ocreationsupshot</p></div><i class="fas fa-external-link-alt"></i></a>
+      <a href="https://www.facebook.com/share/1A8jUnhgPw/" target="_blank" class="social-card facebook"><div class="social-icon"><i class="fab fa-facebook-f"></i></div><div class="social-info"><h4>Main Facebook</h4><p>OmoCreations</p></div><i class="fas fa-external-link-alt"></i></a>
+      <a href="https://www.facebook.com/share/17xrV2UHZZ/" target="_blank" class="social-card facebook"><div class="social-icon"><i class="fab fa-facebook-f"></i></div><div class="social-info"><h4>Patternboard</h4><p>Size 6 Patternboard</p></div><i class="fas fa-external-link-alt"></i></a>
+      <a href="https://tiktok.com/@o.m.ocreations01" target="_blank" class="social-card tiktok"><div class="social-icon"><i class="fab fa-tiktok"></i></div><div class="social-info"><h4>TikTok</h4><p>@o.m.ocreations01</p></div><i class="fas fa-external-link-alt"></i></a>
+      <a href="https://wa.me/2348077340294?text=Hello%20@%20OmoCreations%20I%20want%20to%20make%20an%20enquiry%20on%20your%20products" target="_blank" class="social-card whatsapp"><div class="social-icon"><i class="fab fa-whatsapp"></i></div><div class="social-info"><h4>WhatsApp</h4><p>Order & Inquiries</p></div><i class="fas fa-comment-dots"></i></a>
+      <a href="mailto:omocreationwebsite@gmail.com" class="social-card email"><div class="social-icon"><i class="fas fa-envelope"></i></div><div class="social-info"><h4>Email</h4><p>omocreationwebsite@gmail.com</p></div><i class="fas fa-paper-plane"></i></a>
+      <a href="https://instagram.com/o.m.ocreationsdesigns?igshid=OGQ5ZDc2ODk2ZA==" target="_blank" class="social-card instagram"><div class="social-icon"><i class="fab fa-instagram"></i></div><div class="social-info"><h4>Designs Instagram</h4><p>@o.m.ocreationsdesigns</p></div><i class="fas fa-external-link-alt"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- Newsletter -->
+<div class="newsletter flame-ring">
+  <h3>Stay Updated</h3>
+  <p>Subscribe for exclusive offers, new collections, and training announcements</p>
+  <form class="newsletter-form" id="newsletterForm">
+    <input type="email" id="newsletterEmail" placeholder="Your email address" required>
+    <button type="submit">Subscribe <i class="fas fa-paper-plane"></i></button>
+  </form>
+  <p style="margin-top:15px; font-size:0.7rem; opacity:0.8;">We respect your privacy. Unsubscribe anytime.</p>
+</div>
+
+<!-- Professional Footer -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="footer-logo">💎 <span>OmoCreations</span></div>
+      <p>Luxury Stone Fashion | Original Rhinestones | Beads | Bridal Materials | Paperstones</p>
+      <p><strong>We sell Original Rhinestones in Abeokuta, Ogun State, Nigeria</strong></p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/o.m.ocreations" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/share/1A8jUnhgPw/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://tiktok.com/@o.m.ocreations01" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://wa.me/2348077340294?text=Hello%20@%20OmoCreations%20I%20want%20to%20make%20an%20enquiry%20on%20your%20products" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      <div class="payment-methods">
+        <span><i class="fab fa-cc-visa"></i></span>
+        <span><i class="fab fa-cc-mastercard"></i></span>
+        <span><i class="fab fa-cc-paypal"></i></span>
+        <span><i class="fas fa-mobile-alt"></i></span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Catalog</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Our Products</h4>
+      <ul>
+        <li><a href="shop.html">Original Rhinestones</a></li>
+        <li><a href="shop.html">Beads Collection</a></li>
+        <li><a href="shop.html">Bridal Materials</a></li>
+        <li><a href="shop.html">Paperstones</a></li>
+        <li><a href="#contact">Training Programs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Info</h4>
+      <ul>
+        <li><i class="fas fa-location-dot"></i> 3 Oyebo Street, Abeokuta</li>
+        <li><i class="fas fa-phone"></i> +234 807 734 0294</li>
+        <li><i class="fas fa-envelope"></i> omocreationwebsite@gmail.com</li>
+        <li><i class="fas fa-clock"></i> Mon-Sat: 9AM - 6PM</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 OmoCreations. All Rights Reserved. | Sales of Beads, Rhinestones & Bridal Materials in Abeokuta, Ogun State, Nigeria</p>
+    <p style="margin-top: 10px;">Designed with <i class="fas fa-heart" style="color: var(--pink);"></i> for fashion excellence</p>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp with custom message -->
+<a href="https://wa.me/2348077340294?text=Hello%20@%20OmoCreations%20I%20want%20to%20make%20an%20enquiry%20on%20your%20products" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+<a href="#" class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></a>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast"></div>
+
+<script>
+  // Show toast notification
+  function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3000);
+  }
+
+  // Send email using mailto for newsletter
+  function sendNewsletterEmail(email) {
+    const subject = encodeURIComponent('Newsletter Subscription - OmoCreations');
+    const body = encodeURIComponent(`Hello OmoCreations,\n\nI would like to subscribe to your newsletter.\n\nEmail: ${email}\n\nPlease add me to your mailing list.\n\nThank you!`);
+    window.location.href = `mailto:omocreationwebsite@gmail.com?subject=${subject}&body=${body}`;
+    showToast('📧 Opening email client to subscribe...');
+  }
+
+  // Slider
+  const slides = document.querySelectorAll('.slide');
+  const prevBtn = document.getElementById('prevSlide');
+  const nextBtn = document.getElementById('nextSlide');
+  const dotsContainer = document.getElementById('sliderDots');
+  let currentSlide = 0, slideInterval;
+  
+  if (dotsContainer && slides.length) {
+    slides.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    });
+  }
+  const dots = document.querySelectorAll('.dot');
+  
+  function goToSlide(index) {
+    if (!slides.length) return;
+    slides[currentSlide]?.classList.remove('active');
+    dots[currentSlide]?.classList.remove('active');
+    currentSlide = (index + slides.length) % slides.length;
+    slides[currentSlide]?.classList.add('active');
+    dots[currentSlide]?.classList.add('active');
+  }
+  function nextSlide() { goToSlide(currentSlide + 1); }
+  function prevSlide() { goToSlide(currentSlide - 1); }
+  function startAutoSlide() { if (slideInterval) clearInterval(slideInterval); slideInterval = setInterval(nextSlide, 5000); }
+  
+  if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); startAutoSlide(); });
+  if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); startAutoSlide(); });
+  startAutoSlide();
+
+  // Mobile Menu
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('navMenu');
+  const closeMenu = document.getElementById('closeMenu');
+  function openMenu() { navMenu?.classList.add('active'); hamburger?.classList.add('active'); document.body.style.overflow = 'hidden'; }
+  function closeMenuFunc() { navMenu?.classList.remove('active'); hamburger?.classList.remove('active'); document.body.style.overflow = ''; }
+  if (hamburger) hamburger.addEventListener('click', openMenu);
+  if (closeMenu) closeMenu.addEventListener('click', closeMenuFunc);
+  document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', closeMenuFunc));
+
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar?.classList.toggle('scrolled', window.scrollY > 50); });
+
+  // Back to top
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => { backToTop?.classList.toggle('show', window.scrollY > 300); });
+  if (backToTop) backToTop.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); closeMenuFunc(); }
+    });
+  });
+
+  // Newsletter Form - Send email
+  const newsletterForm = document.getElementById('newsletterForm');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', (e) => { 
+      e.preventDefault(); 
+      const email = document.getElementById('newsletterEmail').value;
+      if(email) {
+        sendNewsletterEmail(email);
+        newsletterForm.reset();
+      }
+    });
+  }
+
+  // Scroll animations
+  const animateElements = document.querySelectorAll('.service-card, .gallery-item, .info-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; } });
+  }, { threshold: 0.1 });
+  animateElements.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.transition = 'opacity 0.4s ease, transform 0.4s ease'; observer.observe(el); });
+
+  console.log('%c✨ OmoCreations - Luxury Stone Fashion ✨', 'color: #ff4da6; font-size: 14px; font-weight: bold;');
+</script>
+</body>
+</html>
