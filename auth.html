@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Sign In · FashionStone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #fff0f6, #ffffff); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .container { max-width: 420px; width: 100%; }
+    .card { background: white; border-radius: 30px; padding: 35px 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+    h2 { text-align: center; margin-bottom: 10px; color: #0f0f1a; }
+    h2 span { color: #ff4da6; }
+    p.subtitle { text-align: center; color: #6b7280; font-size: 0.8rem; margin-bottom: 25px; }
+    .tabs { display: flex; gap: 10px; margin-bottom: 25px; border-bottom: 2px solid #f0f0f0; }
+    .tab { flex: 1; text-align: center; padding: 12px; background: none; border: none; font-weight: 600; color: #6b7280; cursor: pointer; }
+    .tab.active { color: #ff4da6; border-bottom: 3px solid #ff4da6; margin-bottom: -2px; }
+    .form { display: none; }
+    .form.active { display: block; }
+    .input-group { margin-bottom: 18px; }
+    .input-group input { width: 100%; padding: 14px 16px; border: 1.5px solid #e5e7eb; border-radius: 50px; font-size: 0.9rem; outline: none; }
+    .input-group input:focus { border-color: #ff4da6; }
+    .btn { width: 100%; padding: 14px; background: #ff4da6; color: white; border: none; border-radius: 50px; font-weight: 600; font-size: 0.95rem; cursor: pointer; }
+    .btn:disabled { opacity: 0.6; }
+    .message { margin-top: 15px; padding: 12px; border-radius: 40px; text-align: center; font-size: 0.8rem; display: none; }
+    .message.error { background: #fee2e2; color: #dc2626; display: block; }
+    .message.success { background: #d1fae5; color: #059669; display: block; }
+    .message.info { background: #fff3cd; color: #856404; display: block; }
+    .pending-box { text-align: center; padding: 20px; display: none; }
+    .pending-box i { font-size: 3rem; color: #f59e0b; margin-bottom: 15px; }
+    .pending-box h3 { margin-bottom: 10px; }
+    .pending-box p { color: #6b7280; margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <h2>Fashion<span>Stone</span></h2>
+    <p class="subtitle">Enterprise Management</p>
+    
+    <div id="mainView">
+      <div class="tabs">
+        <button class="tab active" data-tab="login">Sign In</button>
+        <button class="tab" data-tab="signup">Register</button>
+      </div>
+      
+      <form id="loginForm" class="form active">
+        <div class="input-group"><input type="email" id="loginEmail" placeholder="Email" required></div>
+        <div class="input-group"><input type="password" id="loginPassword" placeholder="Password" required></div>
+        <button type="submit" class="btn" id="loginBtn">Sign In</button>
+        <div id="loginMessage" class="message"></div>
+      </form>
+      
+      <form id="signupForm" class="form">
+        <div class="input-group"><input type="text" id="signupName" placeholder="Full Name" required></div>
+        <div class="input-group"><input type="tel" id="signupPhone" placeholder="Phone Number" required></div>
+        <div class="input-group"><input type="email" id="signupEmail" placeholder="Email" required></div>
+        <div class="input-group"><input type="password" id="signupPassword" placeholder="Password (min 8 characters)" required></div>
+        <div class="input-group"><input type="password" id="signupConfirm" placeholder="Confirm Password" required></div>
+        <button type="submit" class="btn" id="signupBtn">Register</button>
+        <div id="signupMessage" class="message"></div>
+      </form>
+    </div>
+    
+    <div id="pendingView" class="pending-box">
+      <i class="fas fa-clock"></i>
+      <h3>Registration Submitted</h3>
+      <p>Your account has been created and is pending admin approval.</p>
+      <p style="font-size:0.8rem;">You will be able to login once approved.</p>
+      <button class="btn" id="backToLoginBtn" style="margin-top:15px;">Back to Sign In</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import { getFirestore, doc, setDoc, serverTimestamp, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyA_JPUfHVotadGfntwk8qQXFp64pvDfTRI",
+    authDomain: "fashion-46e5d.firebaseapp.com",
+    projectId: "fashion-46e5d",
+    storageBucket: "fashion-46e5d.firebasestorage.app",
+    messagingSenderId: "408062284317",
+    appId: "1:408062284317:web:eb905bce68926c10a0ecf4"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  const mainView = document.getElementById('mainView');
+  const pendingView = document.getElementById('pendingView');
+  const loginForm = document.getElementById('loginForm');
+  const signupForm = document.getElementById('signupForm');
+  const loginMessage = document.getElementById('loginMessage');
+  const signupMessage = document.getElementById('signupMessage');
+  const loginBtn = document.getElementById('loginBtn');
+  const signupBtn = document.getElementById('signupBtn');
+
+  // Tab switching
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('.form').forEach(f => f.classList.remove('active'));
+      document.getElementById(tab.dataset.tab + 'Form').classList.add('active');
+    });
+  });
+
+  // Back to login
+  document.getElementById('backToLoginBtn').addEventListener('click', () => {
+    mainView.style.display = 'block';
+    pendingView.style.display = 'none';
+  });
+
+  // SIGNUP - SIMPLE AND DIRECT
+  signupForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const name = document.getElementById('signupName').value.trim();
+    const phone = document.getElementById('signupPhone').value.trim();
+    const email = document.getElementById('signupEmail').value.trim();
+    const password = document.getElementById('signupPassword').value;
+    const confirm = document.getElementById('signupConfirm').value;
+
+    // Basic validation
+    if (!name || !phone || !email || !password) {
+      signupMessage.textContent = 'All fields are required';
+      signupMessage.className = 'message error';
+      return;
+    }
+    if (password.length < 8) {
+      signupMessage.textContent = 'Password must be at least 8 characters';
+      signupMessage.className = 'message error';
+      return;
+    }
+    if (password !== confirm) {
+      signupMessage.textContent = 'Passwords do not match';
+      signupMessage.className = 'message error';
+      return;
+    }
+
+    signupBtn.disabled = true;
+    signupBtn.textContent = 'Creating account...';
+
+    try {
+      // Step 1: Create Firebase Auth user
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      
+      // Step 2: Create Firestore document
+      await setDoc(doc(db, 'users', user.uid), {
+        uid: user.uid,
+        fullName: name,
+        phone: phone,
+        email: email,
+        role: 'pending',
+        status: 'pending_approval',
+        baseSalary: 0,
+        totalPoints: 0,
+        pointValueNaira: 100,
+        tasksCompleted: 0,
+        leaveDaysRemaining: 2,
+        profileCompleted: false,
+        createdAt: serverTimestamp()
+      });
+
+      // Step 3: Sign out
+      await signOut(auth);
+      
+      // Step 4: Show pending view
+      mainView.style.display = 'none';
+      pendingView.style.display = 'block';
+      signupForm.reset();
+      
+    } catch (error) {
+      console.error('Signup error:', error);
+      let message = 'Registration failed';
+      if (error.code === 'auth/email-already-in-use') message = 'Email already registered';
+      else if (error.code === 'auth/weak-password') message = 'Password too weak';
+      else message = error.message;
+      
+      signupMessage.textContent = message;
+      signupMessage.className = 'message error';
+    }
+    
+    signupBtn.disabled = false;
+    signupBtn.textContent = 'Register';
+  });
+
+  // LOGIN
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+
+    if (!email || !password) {
+      loginMessage.textContent = 'Email and password required';
+      loginMessage.className = 'message error';
+      return;
+    }
+
+    loginBtn.disabled = true;
+    loginBtn.textContent = 'Signing in...';
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      
+      if (!userDoc.exists()) {
+        await signOut(auth);
+        loginMessage.textContent = 'Account error. Contact support.';
+        loginMessage.className = 'message error';
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Sign In';
+        return;
+      }
+
+      const userData = userDoc.data();
+      
+      // Check if pending
+      if (userData.status === 'pending_approval' || userData.role === 'pending') {
+        await signOut(auth);
+        loginMessage.textContent = 'Your account is pending admin approval';
+        loginMessage.className = 'message info';
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Sign In';
+        return;
+      }
+      
+      // Check if suspended/terminated
+      if (userData.status === 'suspended' || userData.status === 'terminated') {
+        await signOut(auth);
+        loginMessage.textContent = `Account ${userData.status}`;
+        loginMessage.className = 'message error';
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Sign In';
+        return;
+      }
+
+      // Redirect based on role
+      if (userData.role === 'admin' || userData.role === 'super_admin') {
+        window.location.href = 'admin-dashboard.html';
+      } else if (userData.role === 'attendant' || userData.role === 'attendant_chief') {
+        window.location.href = 'attendant-dashboard.html';
+      } else if (userData.role === 'staff') {
+        window.location.href = 'staff-dashboard.html';
+      } else {
+        await signOut(auth);
+        loginMessage.textContent = 'Invalid account type';
+        loginMessage.className = 'message error';
+      }
+      
+    } catch (error) {
+      console.error('Login error:', error);
+      let message = 'Login failed';
+      if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+        message = 'Invalid email or password';
+      } else if (error.code === 'auth/invalid-credential') {
+        message = 'Invalid email or password';
+      } else {
+        message = error.message;
+      }
+      
+      loginMessage.textContent = message;
+      loginMessage.className = 'message error';
+    }
+    
+    loginBtn.disabled = false;
+    loginBtn.textContent = 'Sign In';
+  });
+
+  // Auto-redirect if already logged in
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        if (userData.status === 'active') {
+          if (userData.role === 'admin' || userData.role === 'super_admin') {
+            window.location.href = 'admin-dashboard.html';
+          } else if (userData.role === 'attendant' || userData.role === 'attendant_chief') {
+            window.location.href = 'attendant-dashboard.html';
+          } else if (userData.role === 'staff') {
+            window.location.href = 'staff-dashboard.html';
+          }
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>
